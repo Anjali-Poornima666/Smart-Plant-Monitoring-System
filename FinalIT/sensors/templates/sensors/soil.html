@@ -1,0 +1,72 @@
+<html>
+<head><style>
+body{
+    background-color:	#87CEEB;
+}
+</style>
+	<script type="text/javascript">
+	window.onload = function () {
+      var count=0;
+
+var a=[0,0,0,0,0,0,0,0,0,0]
+var b=[0,0,0,0,0,0,0,0,0,0]
+    {% for i in all_sensors %}
+        a[count]={{i.plant1_soilmoisture}}
+        b[count]={{i.plant2_soilmoisture}}
+        count++;
+    {% endfor %}
+var dps = [{x: 1, y: Number(a[0])}, {x: 2, y: Number(a[1])}, {x: 3, y: Number(a[2])}, {x: 4, y: Number(a[3])}, {x: 5, y: Number(a[4])},{x: 6, y: Number(a[5])}, {x: 7, y: Number(a[6])}, {x: 8, y: Number(a[7])}, {x:9, y: Number(a[8])}, {x:10, y: Number(a[9])}];   //dataPoints.
+      var chart = new CanvasJS.Chart("chart",{
+      	title :{
+      		text: "Plant 1"
+      	},
+      	axisX: {
+      		title: ""
+      	},
+      	axisY: {
+      		title: ""
+      	},
+      	data: [{
+      		type: "line",
+      		dataPoints : dps
+      	}]
+      });
+
+      chart.render();
+var dps1 = [{x: 1, y: Number(b[0])}, {x: 2, y: Number(b[1])}, {x: 3, y: Number(b[2])}, {x: 4, y: Number(b[3])}, {x: 5, y: Number(b[4])},{x: 6, y: Number(b[5])}, {x: 7, y: Number(b[6])}, {x: 8, y: Number(b[7])}, {x:9, y: Number(b[8])}, {x:10, y: Number(b[9])}];   //dataPoints.
+            var chart = new CanvasJS.Chart("chart1",{
+            title :{
+                  text: "Plant 2"
+            },
+            axisX: {
+                  title: ""
+            },
+            axisY: {
+                  title: ""
+            },
+            data: [{
+                  type: "line",
+                  dataPoints : dps1
+            }]
+      });
+
+      chart.render();
+
+}
+</script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body >
+      <center><h1 text-color="white">SOIL MOISTURE</h1></center>
+      <br>
+      <br>
+	<center><div id="chart" style="height: 300px; width: 1000px;">
+	</div></center>
+      <br>
+      <br>
+      <br>
+      <br>
+      <center><div id="chart1" style="height: 300px; width: 1000px;">
+      </div></center>
+</body>
+</html>
